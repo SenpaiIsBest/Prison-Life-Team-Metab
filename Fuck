@@ -1,0 +1,138 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+        local colors = {
+            SchemeColor = Color3.fromRGB(255, 0, 0),
+            Background = Color3.fromRGB(11, 11, 11),
+            Header = Color3.fromRGB(11, 11, 11),
+            TextColor = Color3.fromRGB(0, 255,255),
+            ElementColor = Color3.fromRGB(30, 30, 30)
+        }
+        local Window = Library.CreateLib("Prison life v1 (team Metab)", colors)
+        local Tab = Window:NewTab("Games")
+        local Section = Tab:NewSection("Prison Life")
+        
+        Section:NewButton(
+            "Remove All Doors",
+            "Remove All The Doors And Get Around More Easy",
+            function()
+                game.Workspace.Doors:Destroy()
+            end
+        )
+        Section:NewButton(
+            "Give All Guns",
+            "Pew,Pew ",
+            function()
+                for i,v in pairs(Workspace.Prison_ITEMS.giver:GetChildren()) do
+         
+                    lol = Workspace.Remote.ItemHandler:InvokeServer(v.ITEMPICKUP)
+                    print(lol)
+                    end
+            end
+        )
+        Section:NewButton(
+            "Give All Melee",
+            "SHUT A KNIFE UP HIS ASS <:)",
+            function()
+                local weapons = {"Crude Knife", "Sharpened stick", "Extendo mirror"}
+          for i, v in pairs(game.ReplicatedStorage.Tools:GetChildren()) do
+          for j, k in pairs(weapons) do
+          if v.Name == k then
+          v:Clone().Parent = game.Players.LocalPlayer.Backpack
+          end
+          end
+          end
+            end
+        )
+        Section:NewButton(
+            "Arest All Crims :)",
+            "Arest All Of Thoes Naughty Crimianls",
+            function()
+                local Player = game.Players.LocalPlayer
+        local cpos = Player.Character.HumanoidRootPart.CFrame
+        for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
+        if v.Name ~= Player.Name then
+        local i = 10
+            repeat
+            wait()
+            i = i-1
+            game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
+            Player.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+            until i == 0
+        end
+        end
+        Player.Character.HumanoidRootPart.CFrame = cpos
+        Notify("Success", "Arrested all of the n00bs", "Cool!")
+        
+            end
+        )
+        Section:NewButton(
+            "Super Punch",
+            "Do You Wish You Were Strong And Not A Nerd? Use This",
+            function()
+                mainRemotes = game.ReplicatedStorage meleeRemote = mainRemotes['meleeEvent'] mouse = game.Players.LocalPlayer:GetMouse() punching = false cooldown = false function punch() cooldown = true local part = Instance.new("Part", game.Players.LocalPlayer.Character) part.Transparency = 1 part.Size = Vector3.new(5, 2, 3) part.CanCollide = false local w1 = Instance.new("Weld", part) w1.Part0 = game.Players.LocalPlayer.Character.Torso w1.Part1 = part w1.C1 = CFrame.new(0,0,2) part.Touched:connect(function(hit) if game.Players:FindFirstChild(hit.Parent.Name) then local plr = game.Players:FindFirstChild(hit.Parent.Name) if plr.Name ~= game.Players.LocalPlayer.Name then part:Destroy() for i = 1,100 do meleeRemote:FireServer(plr) end end end end) wait(1) cooldown = false part:Destroy() end mouse.KeyDown:connect(function(key) if cooldown == false then if key:lower() == "f" then punch() end end end)
+            end
+        )
+        Section:NewButton(
+            "Become Invisible",
+            "Are You Ugly? Execute This And Become Cool :)",
+            function()
+                local player = game.Players.LocalPlayer
+                position     = player.Character.HumanoidRootPart.Position
+                wait(0.1)
+                player.Character:MoveTo(position + Vector3.new(0, 1000000, 0))
+                wait(0.1)
+                humanoidrootpart = player.Character.HumanoidRootPart:clone()
+                wait(0.1)
+                player.Character.HumanoidRootPart:Destroy()
+                humanoidrootpart.Parent = player.Character
+                player.Character:MoveTo(position)
+                wait()
+                -- Remove this if you want to see yourself (others still won't see you)
+                game.Players.LocalPlayer.Character.Torso.Transparency = 1
+                game.Players.LocalPlayer.Character.Head.Transparency  = 1
+                game.Players.LocalPlayer.Character["Left Arm"].Transparency = 1
+                game.Players.LocalPlayer.Character["Right Arm"].Transparency = 1
+                game.Players.LocalPlayer.Character["Left Leg"].Transparency = 1
+                game.Players.LocalPlayer.Character["Right Leg"].Transparency = 1
+                game.Players.LocalPlayer.Character.Humanoid:RemoveAccessories()
+                game.Players.LocalPlayer.Character.Head.face:Remove()
+            end
+        )
+        local Tab = Window:NewTab("Universal")
+        local Section = Tab:NewSection("Universals")
+        
+        Section:NewSlider(
+            "Walkspeed",
+            "",
+            250,
+            16,
+            function(s) 
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+            end
+        )
+        
+        Section:NewSlider(
+            "JumpPower",
+            "",
+            500,
+            50,
+            function(s) 
+                game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+            end
+        )
+        local Tab = Window:NewTab("Credits")
+        local Section = Tab:NewSection("Credits,")
+        
+        Section:NewButton(
+            "Get Catfished, Coding,Ui,Everything",
+            "Executes ",
+            function()
+                settoclipboard("Japanese Cat#8652")
+            end
+        )
+		Section:NewButton(
+            "ɧųɠơ Emotional Support",
+            "Executes s",
+            function()
+                settoclipboard("Japanese Cat#8652")
+            end
+)
